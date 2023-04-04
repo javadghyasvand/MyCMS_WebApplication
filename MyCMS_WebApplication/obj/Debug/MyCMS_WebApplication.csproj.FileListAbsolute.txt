@@ -82,3 +82,5 @@ D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.csproj.CopyComplete
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.pdb
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.SqlServer.dll
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.SqlServer.xml

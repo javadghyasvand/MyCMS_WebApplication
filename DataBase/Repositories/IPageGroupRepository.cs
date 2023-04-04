@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DataBase
 {
-    public interface IPageGroupRepository
+    public interface IPageGroupRepository:IDisposable
     {
         IEnumerable<PageGroup> GetAllPageGroup();
-        PageGroup GetPageGroupById(int id);
+        PageGroup GetPageGroupById(long id);
         bool InsertGroup(PageGroup group);
         bool UpdateGroup(PageGroup group);
         bool DeleteGroup(PageGroup group);
-        bool DeleteGroup(int Id);
+        bool DeleteGroup(long Id);
         void Save();
     }
 }

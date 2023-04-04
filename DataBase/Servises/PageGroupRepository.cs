@@ -14,10 +14,11 @@ namespace DataBase
             return _myCmsContext.PageGroup;
         }
 
-        public PageGroup GetPageGroupById(int id)
+        public PageGroup GetPageGroupById(long id)
         {
             return _myCmsContext.PageGroup.Find(id);
         }
+
 
         public bool InsertGroup(PageGroup group)
         {
@@ -58,7 +59,7 @@ namespace DataBase
             }
         }
 
-        public bool DeleteGroup(int id)
+        public bool DeleteGroup(long id)
         {
             try
             {
@@ -73,9 +74,15 @@ namespace DataBase
             }
         }
 
+
         public void Save()
         {
             _myCmsContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+          _myCmsContext.Dispose();
         }
     }
 }

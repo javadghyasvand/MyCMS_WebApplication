@@ -13,12 +13,17 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
 {
     public class PageGroupsController : Controller
     {
-        private MyCmsContext db = new MyCmsContext();
+       private IPageGroupRepository _pageGroupRepository;
 
-        // GET: Admin/PageGroups
+       public PageGroupsController()
+       {
+           _pageGroupRepository = new PageGroupRepository();
+       }
+
+       // GET: Admin/PageGroups
         public ActionResult Index()
         {
-            return View(db.PageGroup.ToList());
+            return View(_pageGroupRepository.GetAllPageGroup());
         }
 
         // GET: Admin/PageGroups/Details/5
@@ -28,7 +33,8 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PageGroup pageGroup = db.PageGroup.Find(id);
+
+            PageGroup pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
             if (pageGroup == null)
             {
                 return HttpNotFound();
@@ -39,7 +45,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // GET: Admin/PageGroups/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Admin/PageGroups/Create
@@ -51,8 +57,8 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PageGroup.Add(pageGroup);
-                db.SaveChanges();
+                _pageGroupRepository.InsertGroup(pageGroup);
+                _pageGroupRepository.Save();
                 return RedirectToAction("Index");
             }
 
@@ -66,12 +72,14 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PageGroup pageGroup = db.PageGroup.Find(id);
+            PageGroup pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
+
+
             if (pageGroup == null)
             {
                 return HttpNotFound();
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // POST: Admin/PageGroups/Edit/5
@@ -83,8 +91,8 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pageGroup).State = EntityState.Modified;
-                db.SaveChanges();
+                _pageGroupRepository.UpdateGroup(pageGroup);   
+                _pageGroupRepository.Save();
                 return RedirectToAction("Index");
             }
             return View(pageGroup);
@@ -97,12 +105,12 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PageGroup pageGroup = db.PageGroup.Find(id);
+            PageGroup pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
             if (pageGroup == null)
             {
                 return HttpNotFound();
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // POST: Admin/PageGroups/Delete/5
@@ -110,9 +118,8 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            PageGroup pageGroup = db.PageGroup.Find(id);
-            db.PageGroup.Remove(pageGroup);
-            db.SaveChanges();
+            _pageGroupRepository.DeleteGroup(id);
+            _pageGroupRepository.Save();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +127,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _pageGroupRepository.Dispose();
             }
             base.Dispose(disposing);
         }
