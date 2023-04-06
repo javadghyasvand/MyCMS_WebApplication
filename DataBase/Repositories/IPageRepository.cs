@@ -6,11 +6,12 @@ namespace DataBase
     public interface IPageRepository
     {
         IEnumerable<Page> GetAllPage();
-        Page GetPageById(int id);
+        Page GetPageById(long id);
         bool InsertPage(Page page);
         bool UpdatePage(Page page);
         bool DeletePage(Page page);
-        bool DeletePage(int id);
+        bool DeletePage(long id);
+        void Dispose();
         void Save();
     }
 }

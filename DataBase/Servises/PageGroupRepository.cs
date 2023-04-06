@@ -7,16 +7,21 @@ namespace DataBase
 {
     public class PageGroupRepository:IPageGroupRepository
     {
-        private readonly MyCmsContext _myCmsContext = new MyCmsContext();
+       private MyCmsContext cms;
 
-        public IEnumerable<PageGroup> GetAllPageGroup()
+       public PageGroupRepository(MyCmsContext context)
+       {
+           this.cms=context;
+       }
+
+       public IEnumerable<PageGroup> GetAllPageGroup()
         {
-            return _myCmsContext.PageGroup;
+            return cms.PageGroup;
         }
 
         public PageGroup GetPageGroupById(long id)
         {
-            return _myCmsContext.PageGroup.Find(id);
+            return cms.PageGroup.Find(id);
         }
 
 
@@ -24,7 +29,7 @@ namespace DataBase
         {
             try
             {
-                _myCmsContext.PageGroup.Add(group);
+                cms.PageGroup.Add(group);
                 return true;
             }
             catch
@@ -37,7 +42,7 @@ namespace DataBase
         {
             try
             {
-                _myCmsContext.Entry(group).State = EntityState.Modified;
+                cms.Entry(group).State = EntityState.Modified;
                 return true;
             }
             catch
@@ -50,7 +55,7 @@ namespace DataBase
         {
             try
             {
-                _myCmsContext.Entry(group).State = EntityState.Deleted;
+                cms.Entry(group).State = EntityState.Deleted;
                 return true;
             }
             catch
@@ -77,12 +82,13 @@ namespace DataBase
 
         public void Save()
         {
-            _myCmsContext.SaveChanges();
+            cms.SaveChanges();
         }
 
         public void Dispose()
         {
-          _myCmsContext.Dispose();
+          cms.Dispose();
+
         }
     }
 }

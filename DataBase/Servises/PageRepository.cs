@@ -7,22 +7,28 @@ namespace DataBase
 {
     public class PageRepository:IPageRepository
     {
-        private readonly MyCmsContext _myCmsContext = new MyCmsContext();
-        public IEnumerable<Page> GetAllPage()
+        private MyCmsContext cms;
+
+        public PageRepository(MyCmsContext context)
         {
-            return _myCmsContext.Page;
+            this.cms = context;
         }
 
-        public Page GetPageById(int id)
+        public IEnumerable<Page> GetAllPage()
         {
-            return _myCmsContext.Page.Find(id);
+            return cms.Page;
+        }
+
+        public Page GetPageById(long id)
+        {
+            return cms.Page.Find(id);
         }
 
         public bool InsertPage(Page page)
         {
             try
             {
-                _myCmsContext.Page.Add(page);
+                cms.Page.Add(page);
                 return true;
             }
             catch (Exception)
@@ -35,7 +41,7 @@ namespace DataBase
         {
             try
             {
-                _myCmsContext.Entry(page).State = EntityState.Modified;
+                cms.Entry(page).State = EntityState.Modified;
                 return true;
             }
             catch (Exception)
@@ -48,7 +54,7 @@ namespace DataBase
         {
             try
             {
-                _myCmsContext.Entry(page).State = EntityState.Deleted;
+                cms.Entry(page).State = EntityState.Deleted;
                 return true;
             }
             catch (Exception)
@@ -57,12 +63,12 @@ namespace DataBase
             }
         }
 
-        public bool DeletePage(int id)
+        public bool DeletePage(long id)
         {
             try
             {
                 var page = GetPageById(id);
-                _myCmsContext.Entry(page).State = EntityState.Deleted;
+                cms.Entry(page).State = EntityState.Deleted;
                 return true;
             }
             catch (Exception)
@@ -71,9 +77,15 @@ namespace DataBase
             }
         }
 
+        public void Dispose()
+        {
+            cms.Dispose();
+        }
+
+
         public void Save()
         {
-            _myCmsContext.SaveChanges();
+            cms.SaveChanges();
         }
     }
 }

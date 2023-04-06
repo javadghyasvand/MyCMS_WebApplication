@@ -26,9 +26,13 @@
                     @Html.DisplayFor(modelItem => item.GroupTitle)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.GroupId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.GroupId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.GroupId })
+                    <a class="btn btn-sm btn-warning" onclick="EditGroup(@item.GroupId)">
+                        <i class="glyphicon glyphicon-edit" ></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" onclick="DeleteGroup(@item.GroupId)">
+                        <i class="glyphicon glyphicon-trash" ></i>
+                    </a>
+                   
                 </td>
             </tr>
         }
@@ -62,6 +66,21 @@
                 $("#myModalBody").html(Result)
             });
         });
+
+        function EditGroup(ID) {
+            $.get("/Admin/PageGroups/Edit/" + ID, function (Result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("ویرایش گروه");
+                $("#myModalBody").html(Result)
+            });
+        }
+        function DeleteGroup(ID) {
+            $.get("/Admin/PageGroups/Delete/" + ID, function (Result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف گروه");
+                $("#myModalBody").html(Result)
+            });
+        }
 
     </script>
 }
