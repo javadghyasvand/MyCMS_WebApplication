@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create","Pages",FormMethod.Post,new{enctype= "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PageGroupsId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PageGroupsId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("PageGroupsId", null,new{@class="form-control"})
                 @Html.ValidationMessageFor(model => model.PageGroupsId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -47,18 +47,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Visit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Visit, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Visit, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control" } })
+               <input type="file" name="ImgUp"/>
                 @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -73,13 +66,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

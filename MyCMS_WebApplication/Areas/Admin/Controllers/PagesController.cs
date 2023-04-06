@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,13 +14,21 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
 {
     public class PagesController : Controller
     {
-        private readonly MyCmsContext _myCmsContext=new MyCmsContext();
+        private readonly IPageRepository _pageRepository;
+        private readonly IPageGroupRepository _pageGroupRepository;
+        readonly MyCmsContext _myCmsContext = new MyCmsContext();
+
+        public PagesController()
+        {
+            _pageGroupRepository = new PageGroupRepository(_myCmsContext);
+            _pageRepository = new PageRepository(_myCmsContext);
+        }
 
 
         // GET: Admin/Pages
         public ActionResult Index()
         {
-            return View(_myCmsContext.Page.GetAllPage());
+            return View(_pageRepository.GetAllPage());
         }
 
         // GET: Admin/Pages/Details/5
@@ -29,7 +38,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Page page = _myCmsContext.GetPageById(id.Value);
+            Page page = _pageRepository.GetPageById(id.Value);
             if (page == null)
             {
                 return HttpNotFound();
@@ -40,6 +49,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // GET: Admin/Pages/Create
         public ActionResult Create()
         {
+            ViewBag.GropID = new SelectList(_pageGroupRepository.GetAllPageGroup(), "GroupId", "GroupTitle");
             return View();
         }
 
@@ -48,12 +58,19 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PageId,PageGroupsId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page)
+        public ActionResult Create([Bind(Include = "PageId,PageGroupsId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page,HttpPostedFile ImgUp)
         {
             if (ModelState.IsValid)
             {
-                _myCmsContext.InsertPage(page);
-                _myCmsContext.Save();
+                page.Visit = 0;
+                page.CreateDate= DateTime.Now;
+                if (ImgUp != null)
+                {
+                    page.ImageName = Guid.NewGuid() + Path.GetExtension(ImgUp.FileName);
+                    ImgUp.SaveAs(Server.MapPath("/PageImages/"+page.ImageName));
+                }
+                _pageRepository.InsertPage(page);
+                _pageRepository.Save();
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +84,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Page page = _myCmsContext.GetPageById(id.Value);
+            Page page = _pageRepository.GetPageById(id.Value);
             if (page == null)
             {
                 return HttpNotFound();
@@ -84,8 +101,8 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _myCmsContext.UpdatePage(page);
-                _myCmsContext.Save();
+                _pageRepository.UpdatePage(page);
+                _pageRepository.Save();
                 return RedirectToAction("Index");
             }
             return View(page);
@@ -98,9 +115,9 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Page page = _myCmsContext.GetPageById(id.Value);
-            _myCmsContext.DeletePage(page);
-            _myCmsContext.Save(); 
+            Page page = _pageRepository.GetPageById(id.Value);
+            _pageRepository.DeletePage(page);
+            _pageRepository.Save(); 
             if (page == null)
             {
                 return HttpNotFound();
@@ -113,9 +130,9 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Page page = _myCmsContext.GetPageById(id);
-            _myCmsContext.DeletePage(page);
-            _myCmsContext.Save();
+            Page page = _pageRepository.GetPageById(id);
+            _pageRepository.DeletePage(page);
+            _pageRepository.Save();
             return RedirectToAction("Index");
         }
 
