@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202304041057025_initialdatabase.designer.cs">
       <DependentUpon>202304041057025_initialdatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304101342490_initial-data-groupid.cs" />
+    <Compile Include="Migrations\202304101342490_initial-data-groupid.designer.cs">
+      <DependentUpon>202304101342490_initial-data-groupid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageComment.cs" />
@@ -70,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202304041057025_initialdatabase.resx">
       <DependentUpon>202304041057025_initialdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304101342490_initial-data-groupid.resx">
+      <DependentUpon>202304101342490_initial-data-groupid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

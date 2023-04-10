@@ -6,9 +6,10 @@ D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\bin\Debug\EntityFramework.S
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\bin\Debug\EntityFramework.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\bin\Debug\EntityFramework.SqlServer.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.csproj.AssemblyReference.cache
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.Migrations.initialdatabase.resources
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.Migrations.initialdatagroupid.resources
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.csproj.GenerateResource.cache
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.csproj.CoreCompileInputs.cache
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.csproj.CopyComplete
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.pdb
-D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.Migrations.initialdatabase.resources
-D:\Source\ASP\Tutorial\MyCMS_WebApplication\DataBase\obj\Debug\DataBase.csproj.GenerateResource.cache

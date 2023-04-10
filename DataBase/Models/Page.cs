@@ -11,7 +11,7 @@ namespace DataBase
 
         [Display(Name = "گروه صفحه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public long PageGroupsId { get; set; }
+        public long GroupId { get; set; }
 
         [Display(Name = "عنوان")]
         [MaxLength(250)]

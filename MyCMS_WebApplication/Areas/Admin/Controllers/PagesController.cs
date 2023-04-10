@@ -16,7 +16,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
     {
         private readonly IPageRepository _pageRepository;
         private readonly IPageGroupRepository _pageGroupRepository;
-        readonly MyCmsContext _myCmsContext = new MyCmsContext();
+        private readonly MyCmsContext _myCmsContext = new MyCmsContext();
 
         public PagesController()
         {
@@ -49,7 +49,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // GET: Admin/Pages/Create
         public ActionResult Create()
         {
-            ViewBag.GropID = new SelectList(_pageGroupRepository.GetAllPageGroup(), "GroupId", "GroupTitle");
+            ViewBag.GroupID = _pageGroupRepository.GetAllPageGroup();
             return View();
         }
 
@@ -58,17 +58,20 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PageId,PageGroupsId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page,HttpPostedFile ImgUp)
+        public ActionResult Create([Bind(Include = "PageId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page,HttpPostedFile ImgUp)
         {
             if (ModelState.IsValid)
             {
                 page.Visit = 0;
                 page.CreateDate= DateTime.Now;
+                page.GroupId = ViewBag.GroupId;
                 if (ImgUp != null)
                 {
                     page.ImageName = Guid.NewGuid() + Path.GetExtension(ImgUp.FileName);
                     ImgUp.SaveAs(Server.MapPath("/PageImages/"+page.ImageName));
                 }
+
+                var tesId = page.GroupId;
                 _pageRepository.InsertPage(page);
                 _pageRepository.Save();
                 return RedirectToAction("Index");
@@ -97,7 +100,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PageId,PageGroupsId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page)
+        public ActionResult Edit([Bind(Include = "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page)
         {
             if (ModelState.IsValid)
             {

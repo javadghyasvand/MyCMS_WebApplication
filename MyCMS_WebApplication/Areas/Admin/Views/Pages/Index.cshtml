@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PageGroupsId)
+            @Html.DisplayNameFor(model => model.GroupId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PageTitle)
@@ -41,7 +41,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PageGroupsId)
+            @Html.DisplayFor(modelItem => item.GroupId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PageTitle)

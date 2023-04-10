@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataBase
 {
-    public interface IPageRepository
+    public interface IPageRepository:IDisposable
     {
         IEnumerable<Page> GetAllPage();
         Page GetPageById(long id);

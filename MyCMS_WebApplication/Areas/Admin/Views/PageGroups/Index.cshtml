@@ -27,12 +27,12 @@
                 </td>
                 <td>
                     <a class="btn btn-sm btn-warning" onclick="EditGroup(@item.GroupId)">
-                        <i class="glyphicon glyphicon-edit" ></i>
+                        <i class="glyphicon glyphicon-edit"></i>
                     </a>
                     <a class="btn btn-sm btn-danger" onclick="DeleteGroup(@item.GroupId)">
-                        <i class="glyphicon glyphicon-trash" ></i>
+                        <i class="glyphicon glyphicon-trash"></i>
                     </a>
-                   
+
                 </td>
             </tr>
         }
@@ -45,7 +45,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body" id="myModalBody">
@@ -55,6 +57,7 @@
     </div>
 </div>
 <!--End Modal-->
+
 @section scripts
 {
     <script>
@@ -84,5 +87,3 @@
 
     </script>
 }
-
-

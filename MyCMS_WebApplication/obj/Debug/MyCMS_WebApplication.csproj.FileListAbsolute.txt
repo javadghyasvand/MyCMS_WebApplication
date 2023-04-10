@@ -52,6 +52,8 @@ D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\roslyn\VBCS
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\roslyn\VBCSCompiler.exe.config
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Antlr3.Runtime.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\DataBase.dll
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.dll
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.SqlServer.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Microsoft.Web.Infrastructure.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Newtonsoft.Json.dll
@@ -63,9 +65,10 @@ D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.WebPages.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.WebPages.Razor.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\WebGrease.dll
-D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\DataBase.pdb
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\DataBase.dll.config
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.xml
+D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.SqlServer.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.Helpers.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.Mvc.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.Optimization.xml
@@ -76,11 +79,8 @@ D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\System.Web.
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Newtonsoft.Json.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Antlr3.Runtime.pdb
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.xml
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.csproj.AssemblyReference.cache
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.csproj.CoreCompileInputs.cache
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.csproj.CopyComplete
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.dll
 D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\obj\Debug\MyCMS_WebApplication.pdb
-D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.SqlServer.dll
-D:\Source\ASP\Tutorial\MyCMS_WebApplication\MyCMS_WebApplication\bin\EntityFramework.SqlServer.xml
