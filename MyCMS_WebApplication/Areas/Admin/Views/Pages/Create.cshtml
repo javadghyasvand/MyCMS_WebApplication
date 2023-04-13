@@ -1,85 +1,83 @@
 ﻿@model DataBase.Page
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ایجاد خبر جدید";
 }
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm("Create", "Pages", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<h4 class="text-center font_Style"><strong>@ViewBag.Title</strong> </h4>
+@using (Html.BeginForm("Create","Pages",FormMethod.Post,new {enctype="multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Page</h4>
+       
         <hr/>
+        @Html.ValidationSummary(true, "", new {  @class = " font_Style text-danger" })
         <div class="form-group">
-            <label for="typeMessage" class="control-label col-md-2">گروه صفحه</label>
+            @Html.LabelFor(model => model.GroupId, htmlAttributes: new {  @class = " font_Style control-label col-md-2" })
             <div class="col-md-10">
-               
-                <select class="form-control" name="typeMessage" id="typeMessage" required="true">
-                    @foreach (var item in ViewBag.GroupId)
-                    {
-                        <option value="@item.GroupId">@item.GroupTitle</option>
-                    }
-                </select>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PageTitle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PageTitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PageTitle, "", new { @class = "text-danger" })
+                @Html.DropDownList("GroupId", null, htmlAttributes: new {  @class = " font_Style form-control" })
+                @Html.ValidationMessageFor(model => model.GroupId, "", new {  @class = " font_Style text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PageTitle, htmlAttributes: new {  @class = " font_Style control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PageTitle, new { htmlAttributes = new {  @class = " font_Style form-control" } })
+                @Html.ValidationMessageFor(model => model.PageTitle, "", new {  @class = " font_Style text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new {  @class = " font_Style control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="ImgUp"/>
-                @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new {  @class = " font_Style form-control" } })
+                @Html.ValidationMessageFor(model => model.ShortDescription, "", new {  @class = " font_Style text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShowInSlider, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Description, htmlAttributes: new {  @class = " font_Style control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new {  @class = " font_Style form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new {  @class = " font_Style text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageName, htmlAttributes: new {  @class = " font_Style control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imgUp"/>
+                @Html.ValidationMessageFor(model => model.ImageName, "", new {  @class = " font_Style text-danger" })
+
+          
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShowInSlider, htmlAttributes: new {  @class = " font_Style control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.ShowInSlider)
-                    @Html.ValidationMessageFor(model => model.ShowInSlider, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.ShowInSlider, "", new {  @class = " font_Style text-danger" })
                 </div>
             </div>
         </div>
 
-
-        <div class="form-group">
+        <div class="form-group text-center">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
+                <input type="submit" value="ثبت خبر" class="btn btn-success" />
+                @Html.ActionLink("بازگشت به لیست اخبار", "Index" ,null ,new { @class ="font_Style btn btn-info font_Style", @title = "بازگشت به لیست اخبار" })
             </div>
         </div>
+
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

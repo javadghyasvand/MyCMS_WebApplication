@@ -56,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,7 +131,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\PageGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PagesController.cs" />
+    <Compile Include="Classes\PersianConvertorDate.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +145,27 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\coustom.css" />
+    <Content Include="Content\css\bootstrap-rtl.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\avatar.jpg" />
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\img.jpg" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\phone.png" />
+    <Content Include="Content\img\refresh.png" />
+    <Content Include="Content\img\sprite.png" />
+    <Content Include="Content\img\thumb.png" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\modernizr.js" />
+    <Content Include="Content\js\owl.carousel.js" />
+    <Content Include="Content\js\script.js" />
+    <Content Include="Content\js\wow.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -161,6 +185,13 @@
     <Content Include="Areas\Admin\Views\Pages\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
+    <Content Include="Content\Vazir\Vazir-Thin-FD.eot" />
+    <Content Include="Content\Vazir\Vazir-Thin-FD.ttf" />
+    <Content Include="Content\Vazir\Vazir-Thin-FD.woff" />
+    <Content Include="Content\Vazir\Vazir-Thin-FD.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -186,6 +217,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Default_Layout.cshtml" />
+    <Content Include="Views\News\ShowGroups.cshtml" />
+    <Content Include="Views\News\PageGroupsInMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

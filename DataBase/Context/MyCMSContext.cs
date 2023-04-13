@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace DataBase.Context
+namespace DataBase
 {
     public class MyCmsContext:DbContext
     {

@@ -11,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GroupId)
+            @Html.DisplayNameFor(model => model.GroupPage.GroupTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GroupId)
+            @Html.DisplayFor(model => model.GroupPage.GroupTitle)
         </dd>
 
         <dt>
@@ -55,7 +55,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImageName)
+            @if (Model.ImageName != null)
+            {
+                <img src="/PageImages/@Model.ImageName" class="thumbnail" style="max-width: 150px; margin: 10px;"/>
+            }
         </dd>
 
         <dt>
@@ -75,8 +78,11 @@
         </dd>
 
     </dl>
+    <div class="form-group text-center">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("ویرایش", "Edit", new { id = Model.PageId }, new { @class = " font_Style btn btn-warning font_Style", @title = "ویرایش" })  
+            @Html.ActionLink("بازگشت به لیست اخبار", "Index" ,null ,new { @class ="font_Style btn btn-info font_Style", @title = "بازگشت به لیست اخبار" })
+        </div>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PageId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

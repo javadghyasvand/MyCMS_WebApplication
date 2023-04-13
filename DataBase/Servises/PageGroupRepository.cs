@@ -1,7 +1,9 @@
-﻿using DataBase.Context;
+﻿
 using System.Collections.Generic;
 using System.Data.Entity;
 using System;
+using System.Linq;
+using DataBase;
 
 namespace DataBase
 {
@@ -83,6 +85,17 @@ namespace DataBase
         public void Save()
         {
             cms.SaveChanges();
+        }
+
+        public IEnumerable<ShowGroupViewModel> GetShowGroups()
+        {
+            return cms.PageGroup.Select(p => new ShowGroupViewModel()
+            {
+                GroupId = p.GroupId,
+                GroupTitle = p.GroupTitle,
+                PageCount = p.Pages.Count
+                
+            });
         }
 
         public void Dispose()

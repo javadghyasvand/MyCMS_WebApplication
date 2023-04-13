@@ -39,6 +39,7 @@ namespace DataBase
         public bool ShowInSlider { get; set; }
 
         [Display(Name = "تاریخ ایجاد")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime CreateDate { get; set; }
 
         public virtual PageGroup GroupPage { get; set; }

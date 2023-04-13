@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataBase;  
 
 namespace DataBase
 {
@@ -12,5 +13,7 @@ namespace DataBase
         bool DeleteGroup(PageGroup group);
         bool DeleteGroup(long Id);
         void Save();
+        IEnumerable<ShowGroupViewModel> GetShowGroups();
+
     }
 }

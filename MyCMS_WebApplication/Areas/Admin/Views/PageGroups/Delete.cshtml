@@ -5,15 +5,15 @@
 }
 
 
-<h3>آیا از حذف "@Model.GroupTitle" مطمئن هستید؟ </h3>
+<h5 class="font_Style"> آیا از حذف گروه "@Model.GroupTitle" مطمئن هستید؟ </h5>
 <div>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GroupTitle)
+            @Html.HiddenFor(model => model.GroupTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GroupTitle)
+            @Html.HiddenFor(model => model.GroupTitle)
         </dd>
 
     </dl>
@@ -22,7 +22,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="حذف گروه" class="btn btn-danger" />
+            <input type="submit" value="حذف" title="حذف گروه" class="btn btn-danger" />
         </div>
     }
 </div>

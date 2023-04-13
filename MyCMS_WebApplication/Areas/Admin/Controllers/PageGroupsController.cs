@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
 using DataBase;
-using DataBase.Context;
 
 namespace MyCMS_WebApplication.Areas.Admin.Controllers
 {
@@ -39,13 +32,13 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // GET: Admin/PageGroups/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Admin/PageGroups/Create
@@ -62,9 +55,9 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
-
+        
         // GET: Admin/PageGroups/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -79,7 +72,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // POST: Admin/PageGroups/Edit/5
@@ -95,7 +88,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
                 _pageGroupRepository.Save();
                 return RedirectToAction("Index");
             }
-            return View(pageGroup);
+            return PartialView(pageGroup);
         }
 
         // GET: Admin/PageGroups/Delete/5
@@ -110,7 +103,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return  View( pageGroup);
+            return  PartialView( pageGroup);
         }
 
         // POST: Admin/PageGroups/Delete/5

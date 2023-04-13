@@ -13,5 +13,6 @@ namespace DataBase
         bool DeletePage(long id);
         void Dispose();
         void Save();
+        IEnumerable<Page> TopNews(int take=5);
     }
 }

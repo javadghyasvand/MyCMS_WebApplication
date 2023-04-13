@@ -1,33 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataBase;
-using DataBase.Context;
 
 namespace MyCMS_WebApplication.Areas.Admin.Controllers
 {
     public class PagesController : Controller
     {
         private readonly IPageRepository _pageRepository;
-        private readonly IPageGroupRepository _pageGroupRepository;
-        private readonly MyCmsContext _myCmsContext = new MyCmsContext();
-
+        private  readonly  IPageGroupRepository _pageGroupRepository;
+        private readonly MyCmsContext _cmsContext = new MyCmsContext();
         public PagesController()
         {
-            _pageGroupRepository = new PageGroupRepository(_myCmsContext);
-            _pageRepository = new PageRepository(_myCmsContext);
+            _pageRepository = new PageRepository(_cmsContext);
+            _pageGroupRepository = new PageGroupRepository(_cmsContext);
         }
 
+        
 
         // GET: Admin/Pages
         public ActionResult Index()
         {
+         
             return View(_pageRepository.GetAllPage());
         }
 
@@ -38,18 +34,18 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Page page = _pageRepository.GetPageById(id.Value);
+            Page page =_pageRepository.GetPageById(id.Value);
             if (page == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(page);
+            return View(page);
         }
 
         // GET: Admin/Pages/Create
         public ActionResult Create()
         {
-            ViewBag.GroupID = _pageGroupRepository.GetAllPageGroup();
+            ViewBag.GroupId = new SelectList(_pageGroupRepository.GetAllPageGroup(), "GroupId", "GroupTitle");
             return View();
         }
 
@@ -58,25 +54,23 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PageId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page,HttpPostedFile ImgUp)
+        public ActionResult Create([Bind(Include = "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page,HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
             {
                 page.Visit = 0;
                 page.CreateDate= DateTime.Now;
-                page.GroupId = ViewBag.GroupId;
-                if (ImgUp != null)
+                if (imgUp != null)
                 {
-                    page.ImageName = Guid.NewGuid() + Path.GetExtension(ImgUp.FileName);
-                    ImgUp.SaveAs(Server.MapPath("/PageImages/"+page.ImageName));
+                    page.ImageName = Guid.NewGuid() + Path.GetExtension(imgUp.FileName);
+                    imgUp.SaveAs(Server.MapPath("/PageImages/"+page.ImageName));
                 }
-
-                var tesId = page.GroupId;
                 _pageRepository.InsertPage(page);
                 _pageRepository.Save();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.GroupId = new SelectList(_pageGroupRepository.GetAllPageGroup(), "GroupId", "GroupTitle", page.GroupId);
             return View(page);
         }
 
@@ -92,6 +86,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.GroupId = new SelectList(_pageGroupRepository.GetAllPageGroup(), "GroupId", "GroupTitle", page.GroupId);
             return View(page);
         }
 
@@ -100,14 +95,25 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page)
+        public ActionResult Edit([Bind(Include = "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")] Page page,HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
             {
+                if (imgUp != null)
+                {
+                    if (page.ImageName!=null)
+                    {
+                       System.IO.File.Delete(Server.MapPath("/PageImages/"+page.ImageName));
+                    }
+                    page.ImageName = Guid.NewGuid() + Path.GetExtension(imgUp.FileName);
+                    imgUp.SaveAs(Server.MapPath("/PageImages/"+page.ImageName));
+                }
+
                 _pageRepository.UpdatePage(page);
                 _pageRepository.Save();
                 return RedirectToAction("Index");
             }
+            ViewBag.GroupId = new SelectList(_pageGroupRepository.GetAllPageGroup(), "GroupId", "GroupTitle", page.GroupId);
             return View(page);
         }
 
@@ -119,8 +125,6 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Page page = _pageRepository.GetPageById(id.Value);
-            _pageRepository.DeletePage(page);
-            _pageRepository.Save(); 
             if (page == null)
             {
                 return HttpNotFound();
@@ -133,7 +137,11 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Page page = _pageRepository.GetPageById(id);
+            var page = _pageRepository.GetPageById(id);
+            if (page.ImageName != null)
+            {
+                System.IO.File.Delete(Server.MapPath("/PageImages/" + page.ImageName));
+            }
             _pageRepository.DeletePage(page);
             _pageRepository.Save();
             return RedirectToAction("Index");
@@ -143,7 +151,8 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                _myCmsContext.Dispose();
+               _pageGroupRepository.Dispose();
+               _pageRepository.Dispose();
             }
             base.Dispose(disposing);
         }
