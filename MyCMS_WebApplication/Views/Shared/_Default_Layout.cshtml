@@ -2,7 +2,7 @@
 <html class="no-js" dir="rtl" lang="fa-IR">
 <head>
     <meta charset="UTF-8">
-    <title> سایت خبری برنامه نویسان </title>
+    <title>سایت خبری</title>
     <base href="">
     <meta name="googlebot" content="index,follow">
     <meta name="robots" content="noodp,noydir">
@@ -85,11 +85,15 @@
         </span>
         <ul>
             <li>
-                <a href=""> صفحه اصلی </a>
+                <a href="/"> صفحه اصلی </a>
+            </li>
+            <li>
+                <a href="/Archive"> آرشیو خبر ها </a>
             </li>
             <li>
                 <a href=""> ثبت نام </a>
             </li>
+          
             <li>
                 <a href=""> ورود به سایت </a>
             </li>
@@ -109,123 +113,21 @@
 
             @Html.Action("ShowGroups", "News")
             <!-- most views news -->
-            <section class="last-news-side border-radius">
-                <header>
-                    <i class="icons icon-star"></i>
-                    <h3> پربازدیدترین اخبار </h3>
-                </header>
-                <ul>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2>
-                            <a href="">عنوان خبر در این ناحیه قرار میگیرد</a>
-                        </h2>
-                        <span>انتشار : 15/08/1395</span>
-                    </li>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2>
-                            <a href="">عنوان خبر در این ناحیه قرار میگیرد</a>
-                        </h2>
-                        <span>انتشار : 15/08/1395</span>
-                    </li>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2>
-                            <a href="">عنوان خبر در این ناحیه قرار میگیرد</a>
-                        </h2>
-                        <span>انتشار : 15/08/1395</span>
-                    </li>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2>
-                            <a href="">عنوان خبر در این ناحیه قرار میگیرد</a>
-                        </h2>
-                        <span>انتشار : 15/08/1395</span>
-                    </li>
-                </ul>
-            </section>
+            @Html.Action("TopNews","News")
             <!-- end most views news -->
         </aside>
 
 
         <div class="col-md-8 col-sm-12 col-xs-12 ">
-
-            <!-- slider -->
-            <!--<div class="news-slider border-radius">
-            <div id="slider-one" class="owl-carousel">-->
-            <!-- each item -->
-            <!--<div class="item">
-                <img src="~/Content/img/thumb.png">
-                <div class="left-side">
-                    <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a> </h2>
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                    </p>
-                    <span> <i class="fa fa-calendar"></i> انتشار : 15/08/1395</span>
-                </div>
-                <div class="clearfix"></div>
-            </div>-->
-            <!-- end each item -->
-            <!-- each item -->
-            <!--<div class="item">
-                <img src="~/Content/img/thumb.png">
-                <div class="left-side">
-                    <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a> </h2>
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                    </p>
-                    <span> <i class="fa fa-calendar"></i> انتشار : 15/08/1395</span>
-                </div>
-                <div class="clearfix"></div>
-            </div>-->
-            <!-- end each item -->
-            <!--</div>
-            <a href="" class="news-archive"> <i class="icons icon-doc-1"></i> آرشیو کامل خبرها </a>
-            </div>-->
-            <!-- End slider -->
-            <!-- last news -->
-            <!--<section class="last-news-section border-radius margin-top-60">
-                <header><i class="icons icon-doc-2"></i>  <h3>آخرین آخبار ارسالی</h3> </header>
-                <ul>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2> <a href=""> عنوان خبر در این ناحیه قرار میگیرد </a></h2>
-                        <p>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ...
-                        </p>
-                        <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : 15/08/1395 </span>
-                        <a href="" class="more-link"><i class="icons icon-more"></i></a>
-                    </li>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2> <a href=""> عنوان خبر در این ناحیه قرار میگیرد </a></h2>
-                        <p>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ...
-                        </p>
-                        <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : 15/08/1395 </span>
-                        <a href="" class="more-link"><i class="icons icon-more"></i></a>
-                    </li>
-                    <li>
-                        <img class="border-radius" src="~/Content/img/thumb.png">
-                        <h2> <a href=""> عنوان خبر در این ناحیه قرار میگیرد </a></h2>
-                        <p>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ...
-                        </p>
-                        <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : 15/08/1395 </span>
-                        <a href="" class="more-link"><i class="icons icon-more"></i></a>
-                    </li>
-                </ul>
-            </section>-->
-            <!-- End last news -->
             @RenderBody()
+           
         </div>
 
 
     </div>
 </div>
 
-<footer>
+@*<footer>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12">
@@ -285,7 +187,7 @@
             </div>
         </div>
     </div>
-</footer>
+</footer>*@
 
 <script src="~/Content/js/bootstrap.min.js"></script>
 <script src="~/Content/js/owl.carousel.js"></script>

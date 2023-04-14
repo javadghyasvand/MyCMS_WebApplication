@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.DynamicData;
 
 namespace DataBase
 {
@@ -11,8 +12,11 @@ namespace DataBase
         bool UpdatePage(Page page);
         bool DeletePage(Page page);
         bool DeletePage(long id);
-        void Dispose();
+        new void Dispose();
         void Save();
         IEnumerable<Page> TopNews(int take=5);
+        IEnumerable<Page> PageInSlider(int take=5);
+        IEnumerable<Page> LastNews(int take = 4);
+        IEnumerable<Page> ShowPageGroupById(long id);
     }
 }

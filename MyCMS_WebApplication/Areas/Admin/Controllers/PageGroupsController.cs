@@ -7,10 +7,10 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
     public class PageGroupsController : Controller
     {
        private readonly IPageGroupRepository _pageGroupRepository;
-       readonly MyCmsContext Db = new MyCmsContext();  
+       private readonly MyCmsContext _cms = new MyCmsContext();  
        public PageGroupsController()
        {
-           _pageGroupRepository = new PageGroupRepository(Db);
+           _pageGroupRepository = new PageGroupRepository(_cms);
        }
 
        // GET: Admin/PageGroups
@@ -121,7 +121,6 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
             if (disposing)
             {
                 _pageGroupRepository.Dispose();
-                Db.Dispose();
             }
             base.Dispose(disposing);
         }

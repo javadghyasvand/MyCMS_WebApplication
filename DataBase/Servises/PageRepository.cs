@@ -1,34 +1,34 @@
-﻿using DataBase;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System;
+using System.Linq;
 
 namespace DataBase
 {
     public class PageRepository:IPageRepository
     {
-        private MyCmsContext cms;
+        private readonly MyCmsContext _cms;
 
         public PageRepository(MyCmsContext context)
         {
-            this.cms = context;
+            this._cms = context;
         }
 
         public IEnumerable<Page> GetAllPage()
         {
-            return cms.Page;
+            return _cms.Page;
         }
 
         public Page GetPageById(long id)
         {
-            return cms.Page.Find(id);
+            return _cms.Page.Find(id);
         }
 
         public bool InsertPage(Page page)
         {
             try
             {
-                cms.Page.Add(page);
+                _cms.Page.Add(page);
                 return true;
             }
             catch (Exception)
@@ -41,7 +41,7 @@ namespace DataBase
         {
             try
             {
-                cms.Entry(page).State = EntityState.Modified;
+                _cms.Entry(page).State = EntityState.Modified;
                 return true;
             }
             catch (Exception)
@@ -54,7 +54,7 @@ namespace DataBase
         {
             try
             {
-                cms.Entry(page).State = EntityState.Deleted;
+                _cms.Entry(page).State = EntityState.Deleted;
                 return true;
             }
             catch (Exception)
@@ -68,7 +68,7 @@ namespace DataBase
             try
             {
                 var page = GetPageById(id);
-                cms.Entry(page).State = EntityState.Deleted;
+                _cms.Entry(page).State = EntityState.Deleted;
                 return true;
             }
             catch (Exception)
@@ -79,13 +79,34 @@ namespace DataBase
 
         public void Dispose()
         {
-            cms.Dispose();
+            _cms.Dispose();
         }
 
 
         public void Save()
         {
-            cms.SaveChanges();
+            _cms.SaveChanges();
         }
+
+        public IEnumerable<Page> TopNews(int take = 5)
+        {
+            return _cms.Page.OrderByDescending(p => p.Visit).Take(take);
+        }
+
+        public IEnumerable<Page> PageInSlider(int take = 5)
+        {
+            return _cms.Page.Where(p => p.ShowInSlider).Take(take);
+        }
+
+        public IEnumerable<Page> LastNews(int take = 4)
+        {
+            return _cms.Page.OrderByDescending(p => p.CreateDate).Take(take);
+        }
+
+        public IEnumerable<Page> ShowPageGroupById(long id)
+        {
+            return _cms.Page.Where(p => p.GroupId == id);
+        }
+
     }
 }
