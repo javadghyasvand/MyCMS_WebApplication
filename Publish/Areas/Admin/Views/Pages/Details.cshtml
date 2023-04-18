@@ -1,0 +1,88 @@
+﻿@model DataBase.Page
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Page</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupPage.GroupTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupPage.GroupTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+
+        <dd>
+            @if (Model.ImageName != null)
+            {
+                <img src="/PageImages/@Model.ImageName" class="thumbnail" style="max-width: 150px; margin: 10px;"/>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowInSlider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShowInSlider)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+    </dl>
+    <div class="form-group text-center">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("ویرایش", "Edit", new { id = Model.PageId }, new { @class = " font_Style btn btn-warning font_Style", @title = "ویرایش" })  
+            @Html.ActionLink("بازگشت به لیست اخبار", "Index" ,null ,new { @class ="font_Style btn btn-info font_Style", @title = "بازگشت به لیست اخبار" })
+        </div>
+
+    </div>
+</div>

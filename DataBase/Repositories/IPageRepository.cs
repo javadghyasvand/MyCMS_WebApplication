@@ -18,5 +18,6 @@ namespace DataBase
         IEnumerable<Page> PageInSlider(int take=5);
         IEnumerable<Page> LastNews(int take = 4);
         IEnumerable<Page> ShowPageGroupById(long id);
+        IEnumerable<Page> SearchPage(string search);
     }
 }

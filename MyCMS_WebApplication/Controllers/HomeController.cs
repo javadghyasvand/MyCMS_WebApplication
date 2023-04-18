@@ -10,7 +10,8 @@ namespace MyCMS_WebApplication.Controllers
     public class HomeController : Controller
     {
         private readonly IPageRepository _pageRepository;
-        private readonly MyCmsContext _cms =new MyCmsContext();
+        private readonly MyCmsContext _cms = new MyCmsContext();
+
         public HomeController()
         {
             _pageRepository = new PageRepository(_cms);
@@ -31,7 +32,6 @@ namespace MyCMS_WebApplication.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 

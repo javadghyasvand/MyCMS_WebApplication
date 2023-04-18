@@ -4,6 +4,7 @@ using DataBase;
 
 namespace MyCMS_WebApplication.Areas.Admin.Controllers
 {
+    [Authorize]
     public class PageGroupsController : Controller
     {
        private readonly IPageGroupRepository _pageGroupRepository;

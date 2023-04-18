@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DataBase.PageGroup>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p> 
+    <a class="btn btn-success font_Style" title="افزودن گروه جدید" id="btnNewGroup">افزودن گروه جدید</a>
+</p>
+@if (Model != null)
+{
+    <table class="table ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupTitle)
+            </th>
+            <th>
+                عملیات
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupTitle)
+                </td>
+                
+                <td>
+                    <a class="btn btn-sm btn-warning" title="ویرایش" onclick="EditGroup(@item.GroupId)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" title="حدف" onclick="DeleteGroup(@item.GroupId)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<!-- Modal -->
+<div class="modal fade text-center" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title font_Style" id="myModalLabel"></h5>
+            </div>
+            <div class="modal-body" id="myModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+
+@section scripts
+{
+    <script>
+        $("#btnNewGroup").click(function () {
+            $.get("/Admin/PageGroups/Create", function (Result) {
+
+                $("#myModal").modal();
+                $("#myModalLabel").html("افزودن گروه جدید");
+                $("#myModalBody").html(Result)
+            });
+        });
+
+        function EditGroup(ID) {
+            $.get("/Admin/PageGroups/Edit/" + ID, function (Result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("ویرایش گروه");
+                $("#myModalBody").html(Result)
+            });
+        }
+        function DeleteGroup(ID) {
+            $.get("/Admin/PageGroups/Delete/" + ID, function (Result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف گروه");
+                $("#myModalBody").html(Result)
+            });
+        }
+
+    </script>
+}

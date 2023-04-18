@@ -3,12 +3,15 @@ using System.IO;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using DataBase;
 
 namespace MyCMS_WebApplication.Areas.Admin.Controllers
 {
+    [Authorize]
     public class PagesController : Controller
     {
+       
         private readonly IPageRepository _pageRepository;
         private readonly IPageGroupRepository _pageGroupRepository;
         private readonly MyCmsContext _cms = new MyCmsContext();
@@ -57,7 +60,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include =
-                "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")]
+                "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate,Tags")]
             Page page, HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)
@@ -106,7 +109,7 @@ namespace MyCMS_WebApplication.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
             [Bind(Include =
-                "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate")]
+                "PageId,GroupId,PageTitle,ShortDescription,Description,Visit,ImageName,ShowInSlider,CreateDate,Tags")]
             Page page, HttpPostedFileBase imgUp)
         {
             if (ModelState.IsValid)

@@ -1,8 +1,9 @@
 ﻿ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System;
+ using System.Web.Mvc;
 
-namespace DataBase
+ namespace DataBase
 {
     public class Page
     {
@@ -27,6 +28,7 @@ namespace DataBase
         [Display(Name = "متن خبر ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Description { get; set; }
 
         [Display(Name = "بازدید")]
@@ -40,7 +42,10 @@ namespace DataBase
 
         [Display(Name = "تاریخ ایجاد")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+
         public DateTime CreateDate { get; set; }
+        [Display(Name = "کلمات کلیدی")]
+        public string Tags { get; set; }
 
         public virtual PageGroup GroupPage { get; set; }
 

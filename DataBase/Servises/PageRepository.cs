@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DataBase
 {
-    public class PageRepository:IPageRepository
+    public class PageRepository : IPageRepository
     {
         private readonly MyCmsContext _cms;
 
@@ -108,5 +108,11 @@ namespace DataBase
             return _cms.Page.Where(p => p.GroupId == id);
         }
 
+        public IEnumerable<Page> SearchPage(string search)
+        {
+            return _cms.Page.Where(p =>
+                p.PageTitle.Contains(search) || p.ShortDescription.Contains(search) || p.Description.Contains(search) ||
+                p.Tags.Contains(search)).Distinct();
+        }
     }
 }

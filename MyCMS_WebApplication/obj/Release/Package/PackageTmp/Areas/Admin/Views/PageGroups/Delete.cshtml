@@ -1,0 +1,28 @@
+﻿@model DataBase.PageGroup
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h5 class="font_Style"> آیا از حذف گروه "@Model.GroupTitle" مطمئن هستید؟ </h5>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.HiddenFor(model => model.GroupTitle)
+        </dt>
+
+        <dd>
+            @Html.HiddenFor(model => model.GroupTitle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" title="حذف گروه" class="btn btn-danger" />
+        </div>
+    }
+</div>

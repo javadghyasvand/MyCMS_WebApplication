@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DataBase.PageGroup>
+
+<span>گروه های خبری</span>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="/Group/@item.GroupId/@item.GroupTitle" id="@item.GroupId">@item.GroupTitle</a></li>
+    }
+</ul>
+
+
